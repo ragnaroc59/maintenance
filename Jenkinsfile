@@ -4,7 +4,6 @@ def nexusId = 'nexus_localhost'
 /* *** Configuration de Nexus pour Maven ***/
 // URL de Nexus
 def nexusUrl = 'http://localhost:8081'
-
 // Repo Id (provient du settings.xml nexus pour récupérer user/password)
 def mavenRepoId = 'maintenance'
 
@@ -18,8 +17,8 @@ def nexusRepoRelease = "maven-releases"
 def groupId = ''
 def artefactId = ''
 def filePath = ''
-def packaging = 'jar'
-def version = '1.0'
+def packaging = ''
+def version = ''
 
 // Variable utilisée pour savoir si c'est une RELEASE ou une SNAPSHOT
 def isSnapshot = true
@@ -39,8 +38,8 @@ pipeline {
                 pom = readMavenPom file: 'pom.xml'
                 groupId = pom.groupId
                 artifactId = pom.artifactId
-                #packaging = pom.packaging
-                #version = pom.version
+                packaging = pom.packaging
+                version = pom.version
                 filepath = "target/${artifactId}-${version}.jar"
                 isSnapshot = version.endsWith("-SNAPSHOT")
             }
