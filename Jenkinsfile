@@ -39,6 +39,15 @@ pipeline {
 			  sh 'mvn spotbugs:spotbugs'
           }
       }
-	
+
+   }
+
+   post {
+      always{
+        junit '**/surefire-reports/*.xml'
+        recordIssues enabledForFailure : true, tools:checkstyle()
+        recordIssues enabledForFailure : true, tools:spotbugs()
+        recordIssues enabledForFailure : true, tools:[mavenConsole(),java(),javaDoc()]
+      }
    }
 }
