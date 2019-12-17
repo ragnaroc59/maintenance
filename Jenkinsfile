@@ -39,8 +39,6 @@ pipeline {
                 pom = readMavenPom file: 'pom.xml'
                 groupId = pom.groupId
                 artifactId = pom.artifactId
-                #packaging = pom.packaging
-                #version = pom.version
                 filepath = "target/${artifactId}-${version}.jar"
                 isSnapshot = version.endsWith("-SNAPSHOT")
             }
