@@ -136,12 +136,34 @@
 				</executions>
 
 			</plugin>
+
+
+			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>1.6.2</version>
+				<extensions>true</extensions>
+				<configuration>
+					<serverId>nexusLocal</serverId>
+					<nexusUrl>http://localhost:8081/nexus</nexusUrl>
+					<autoReleaseAfterClose>true</autoReleaseAfterClose>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.wagon</groupId>
+						<artifactId>wagon-ssh</artifactId>
+						<version>2.12</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+
 		</plugins>
 	</build>
+
 <repositories>
 	<repository>
 	 <id>nexusLocal</id>
-	 <url>http://localhost:8081/repository/nexusLocal</url>
+	 <url>http://localhost:8081/nexus</url>
 	</repository>
 </repositories>
 </project>
