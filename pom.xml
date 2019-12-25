@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>fr.epsi</groupId>
 	<artifactId>maintenance</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1-RELEASE</version>
 	<name>maintenance</name>
 	<description>Démo maintenance applicative</description>
 
