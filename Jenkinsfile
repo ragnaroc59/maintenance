@@ -3,7 +3,7 @@ def nexusId = 'nexus_localhost'
 
 /* *** Configuration de Nexus pour Maven ***/
 // URL de Nexus
-def nexusUrl = 'http://localhost:8081'
+def nexusUrl = 'http://172.21.0.3:8081'
 
 // Repo Id (provient du settings.xml nexus pour récupérer user/password)
 def mavenRepoId = 'nexusLocal'
