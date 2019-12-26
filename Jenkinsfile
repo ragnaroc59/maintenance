@@ -61,7 +61,7 @@ pipeline {
 
      stage('SonarQube analysis') {
          steps{
-				sh 'mvn sonar:sonar -Dsonar.projectKey=maintenance-back -Dsonar.host.url=http://localhost:9000 -Dsonar.login=057a6cbca037df0ec4586f8cf2a450a50505e524'
+				sh 'mvn sonar:sonar -Dsonar.projectKey=maintenance-back -Dsonar.host.url=http://172.18.0.3:9000 -Dsonar.login=057a6cbca037df0ec4586f8cf2a450a50505e524'
              }
        }
       
