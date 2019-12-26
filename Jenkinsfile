@@ -4,6 +4,7 @@ def nexusId = 'nexus_localhost'
 /* *** Configuration de Nexus pour Maven ***/
 // URL de Nexus
 def nexusUrl = 'http://172.21.0.3:8081'
+def sonarUrl = 'http://172.17.0.3:9000'
 
 // Repo Id (provient du settings.xml nexus pour récupérer user/password)
 def mavenRepoId = 'nexusLocal'
@@ -56,6 +57,13 @@ pipeline {
           steps {
               sh 'mvn clean package'
           }
+      }
+
+     stage('SonarQube analysis') {
+         steps{
+				sh 'mvn sonar:sonar -Dsonar.projectKey=maintenance-back -Dsonar.host.url=http://localhost:9000 -Dsonar.login=4bcdf939480e4db42765a208d503919b25c6046a'
+             }
+       }
       }
       
       /*
