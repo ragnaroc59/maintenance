@@ -64,7 +64,6 @@ pipeline {
 				sh 'mvn sonar:sonar -Dsonar.projectKey=maintenance-back -Dsonar.host.url=http://localhost:9000 -Dsonar.login=4bcdf939480e4db42765a208d503919b25c6046a'
              }
        }
-      }
       
       /*
       Ce stage ne se lance que si isSnapshot est vrai
