@@ -59,11 +59,23 @@ pipeline {
           }
       }
 
-     stage('SonarQube analysis') {
+      stage('Checkstyle') {
+               steps{
+      				sh 'mvn checkstyle:checkstyle'
+                   }
+      }
+
+      stage('Checkstyle') {
+       steps{
+                sh 'mvn spotbugs:spotbugs'
+            }
+      }
+
+     /*stage('SonarQube analysis') {
          steps{
 				sh 'mvn sonar:sonar -Dsonar.projectKey=maintenance-back -Dsonar.host.url=http://172.18.0.3:9000 -Dsonar.login=057a6cbca037df0ec4586f8cf2a450a50505e524'
              }
-       }
+       }*/
       
       /*
       Ce stage ne se lance que si isSnapshot est vrai
@@ -87,5 +99,15 @@ pipeline {
             nexusPublisher nexusInstanceId: 'nexus_localhost', nexusRepositoryId: "${nexusRepoRelease}", packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: "${filepath}"]], mavenCoordinate: [artifactId: "${artifactId}", groupId: "${groupId}", packaging: "${packaging}", version: "${version}"]]]
           }
       }
+   }
+
+   post{
+     always{
+        junit '**/surefire-reports/*.xml'
+        recordIssues enabledForFailure : true, tools[ mavenConsole(), java(), javaDoc()]
+        recordIssues enabledForFailure : true, tool checkSyle()
+        recordIssues enabledForFailure : true, tool spotBugs()
+     }
+
    }
 }
