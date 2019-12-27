@@ -3,7 +3,7 @@ def nexusId = 'nexus_localhost'
 
 /* *** Configuration de Nexus pour Maven ***/
 // URL de Nexus
-def nexusUrl = 'http://172.17.0.4:8081'
+def nexusUrl = 'http://172.17.0.2:8081'
 def sonarUrl = 'http://172.17.0.3:9000'
 
 // Repo Id (provient du settings.xml nexus pour récupérer user/password)
@@ -81,8 +81,6 @@ pipeline {
       Ce stage ne se lance que si isSnapshot est vrai
       Comme on pousse un Snapshot, on utilise le plugin deploy:deploy-file, cela permet de ne pas mettre les paramètres du Repo dans le pom.xml
       */
-
-      /*
       stage('Push SNAPSHOT to Nexus') {
           when { expression { isSnapshot } }
           steps {
@@ -90,7 +88,6 @@ pipeline {
 
           }
       }
-      */
      
      /*
      Ce stage ne se lance que si isSnapshot est faux
