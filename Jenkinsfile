@@ -65,7 +65,7 @@ pipeline {
                    }
       }
 
-      stage('Checkstyle') {
+      stage('Spotbugs') {
        steps{
                 sh 'mvn spotbugs:spotbugs'
             }
