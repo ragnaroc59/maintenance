@@ -76,11 +76,13 @@ pipeline {
 				sh 'mvn sonar:sonar -Dsonar.projectKey=maintenance-back -Dsonar.host.url=http://172.18.0.3:9000 -Dsonar.login=057a6cbca037df0ec4586f8cf2a450a50505e524'
              }
        }*/
-      
+
       /*
       Ce stage ne se lance que si isSnapshot est vrai
       Comme on pousse un Snapshot, on utilise le plugin deploy:deploy-file, cela permet de ne pas mettre les paramètres du Repo dans le pom.xml
       */
+
+      /*
       stage('Push SNAPSHOT to Nexus') {
           when { expression { isSnapshot } }
           steps {
@@ -88,6 +90,7 @@ pipeline {
 
           }
       }
+      */
      
      /*
      Ce stage ne se lance que si isSnapshot est faux
