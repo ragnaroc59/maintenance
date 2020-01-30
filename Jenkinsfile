@@ -3,8 +3,8 @@ def nexusId = 'nexus_localhost'
 
 /* *** Configuration de Nexus pour Maven ***/
 // URL de Nexus
-def nexusUrl = 'http://172.18.0.3:8081'
-def sonarUrl = 'http://172.18.0.4:9000'
+def nexusUrl = 'http://172.18.0.4:8081'
+def sonarUrl = 'http://172.18.0.5:9000'
 
 // Repo Id (provient du settings.xml nexus pour récupérer user/password)
 def mavenRepoId = 'nexusLocal'
