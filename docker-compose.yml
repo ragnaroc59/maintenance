@@ -11,10 +11,10 @@ services:
     ports:
       - "3000:8080" # Forward the exposed port 8080 on the container to port 8080 on the host machine
     restart: always
-    depends_on: 
-      - db # This service depends on mysql. Start that first.
     networks: # Networks to join (Services on the same network can communicate with each other using their name)
-      - backend
+      backend:
+        ipv4_address: 172.18.0.3
+        
     # App backend service
   nexus:
     #Configuration for building the docker image for the backend service
@@ -22,40 +22,14 @@ services:
     ports:
       - "8081:8081" # Forward the exposed port 8080 on the container to port 8080 on the host machine
     restart: always
-    depends_on:
-      - db # This service depends on mysql. Start that first.
     networks: # Networks to join (Services on the same network can communicate with each other using their name)
-      - backend
-    
-  #sonar:
-    # Configuration for building the docker image for the backend service
-   # image : sonarqube
-    #ports:
-     # - "9000:9000"
-    #restart: always
-    #depends_on:
-     # - db # This service depends on mysql. Start that first.
-    #networks: # Networks to join (Services on the same network can communicate with each other using their name)
-     # - backend
-   
-  # Database Service (Mysql)
-  db:
-    image: mysql:8.0.18
-    restart: always
-    environment:
-      MYSQL_DATABASE: maintenance
-      MYSQL_USER: maintenance
-      MYSQL_PASSWORD: maintenance1234
-      MYSQL_ROOT_PASSWORD: root
-    volumes:
-      - db-data:/var/lib/mysql
-    networks:
-      - backend  
-  
-# Volumes
-volumes:
-  db-data:
+      backend:
+        ipv4_address: 172.18.0.4
 
 # Networks to be created to facilitate communication between containers
 networks:
-  backend: 
+  backend:
+      ipam:
+          driver: default
+          config:
+          - subnet: 172.18.0.0/16
